@@ -95,7 +95,40 @@ test('nested', ()=> {
             iShouldNotHere: 'no',
         }
     })}).not.toThrow()
-
+    expect(schema.validateSync({
+        prop1: '123',
+        prop2: 123,
+        prop3: {
+            prop1: '123',
+            prop2: 123,
+            iShouldNotHere: 'no',
+        }
+    })).toEqual({
+        prop1: '123',
+        prop2: 123,
+        prop3: {
+            prop1: '123',
+            prop2: 123,
+            iShouldNotHere: 'no',
+        }
+    })
+    expect(schema.validateSync({
+        prop1: '123',
+        prop2: 123,
+        iShouldNotHere: 'no',
+        prop3: {
+            prop1: '123',
+            prop2: 123,
+        }
+    })).toEqual({
+        prop1: '123',
+        prop2: 123,
+        iShouldNotHere: 'no',
+        prop3: {
+            prop1: '123',
+            prop2: 123,
+        }
+    })
 })
 
 export {}
