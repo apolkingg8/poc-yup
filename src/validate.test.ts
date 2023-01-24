@@ -1,4 +1,5 @@
 import * as y from "yup"
+import {InferType} from "yup"
 
 test('nested', ()=> {
     const schema = y.object({
@@ -9,6 +10,8 @@ test('nested', ()=> {
             prop2: y.number().required(),
         }),
     })
+    type s = InferType<typeof schema>
+
     expect(()=> {schema.validateSync({
         prop1: '123',
         prop2: 123,

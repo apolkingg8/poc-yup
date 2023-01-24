@@ -1,6 +1,7 @@
 import * as y from "yup"
 
-// around 140ms
+// around 140ms - classic
+// around 140ms - 1.0.0
 test('benchmark-1 10k success', ()=> {
     const schema = y.object({
         prop1: y.string(),
@@ -33,7 +34,8 @@ test('benchmark-1 10k success', ()=> {
     console.log(`Cost: ${end-st} ms`)
 })
 
-// around 390ms
+// around 390ms - classic
+// around 440ms - 1.0.0
 test('benchmark-2 10k with 50% fail rate', ()=> {
     const schema = y.object({
         prop1: y.string(),
